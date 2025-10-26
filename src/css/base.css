@@ -46,7 +46,7 @@ main {
   margin: 0;
   box-sizing: border-box;
 }
-.form button{
+button{
   border-radius: 8px;
   padding: 8px 16px;
   width: 91px;
@@ -57,6 +57,24 @@ main {
   background: #4e75ff;
   border: 1px solid #4e75ff;
   cursor: pointer;
+  transition: background (0.175, 0.885, 0.32, 1.275) border (0.175, 0.885, 0.32, 1.275);
+}
+.load-more-btn{
+  display: none;
+  width: 125px;
+  margin: 0 auto;
+}
+.load-more-btn.is-visible{
+  display: block;
+}
+button:hover {
+  background: #6c8cff;
+  border: 1px solid #6c8cff;
+}
+button:disabled {
+  background: #6c8cff;
+  border: 1px solid #6c8cff;
+  cursor: not-allowed;
 }
 
 .loader{

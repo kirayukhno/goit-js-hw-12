@@ -1,4 +1,6 @@
 import axios from 'axios';
+import iziToast from 'izitoast';
+import "izitoast/dist/css/iziToast.min.css";
 
 axios.defaults.baseURL = "https://pixabay.com/api/";
 axios.defaults.params = {
@@ -7,10 +9,43 @@ axios.defaults.params = {
     image_type: "photo",
     orientation: "horizontal",
     safesearch: "true",
-    per_page: 21,
+    per_page: 15,
 }
-export const getImagesByQuery = query => {
-    return axios
-        .get("", { params: { q: query } })
-        .then(response => response.data.hits)
+export const getImagesByQuery = async (query, page) => {
+    try {
+        const response = await axios.get("", {
+            params: {
+                q: query,
+                page: page,
+            },
+        });
+        if (!response.data || !response.data.hits) {
+            iziToast.error({
+                message: "Something went wrong with Pixabay API.",
+                position: "topRight",
+                backgroundColor: "#EF4040",
+                progressBarColor: "#B51B1B",
+                messageColor: "#fff",
+                close: true,
+                maxWidth: 432,
+            });
+            throw new Error("Invalid response");
+        }
+        return {
+            hits: response.data.hits,
+            totalHits: response.data.totalHits,
+        };
+    } catch (error) {
+        console.log("Error from Pixabay API: ", error.message);
+        iziToast.error({
+        message: "Failed to fetch emages from Pixabay. Please try again later!",
+        position: "topRight",
+        backgroundColor: "#EF4040",
+        progressBarColor: "#B51B1B",
+        messageColor: "#fff",
+        close: true,
+        maxWidth: 432,
+        });
+        throw error;
+    }
 };
