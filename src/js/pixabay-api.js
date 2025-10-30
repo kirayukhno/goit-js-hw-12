@@ -38,7 +38,7 @@ export const getImagesByQuery = async (query, page) => {
     } catch (error) {
         console.log("Error from Pixabay API: ", error.message);
         iziToast.error({
-        message: "Failed to fetch emages from Pixabay. Please try again later!",
+        message: "Failed to fetch images from Pixabay. Please try again later!",
         position: "topRight",
         backgroundColor: "#EF4040",
         progressBarColor: "#B51B1B",

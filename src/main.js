@@ -56,6 +56,17 @@ async function onSubmit(event) {
         if (currentPage * 15 < totalHits) {
             showLoadMoreButton();
         }
+        else {
+            iziToast.error({
+                message: "We're sorry, but you've reached the end of search results.",
+                position: "topRight",
+                backgroundColor: "#EF4040",
+                progressBarColor: "#B51B1B",
+                messageColor: "#fff",
+                close: true,
+                maxWidth: 432,
+            });
+        }
     } catch(error) {
             console.log(error);
             iziToast.error({
@@ -107,5 +118,17 @@ async function onLoadMore() {
     } finally {
         hideLoader();
         loadMoreBtn.disabled = false;
+        smoothScroll();
+    }
+}
+
+function smoothScroll() {
+    const card = document.querySelector(".gallery-item");
+    if (card) {
+        window.scrollBy({
+            top: (card.getBoundingClientRect().height * 2),
+            left: 0,
+            behavior: "smooth",
+        });        
     }
 }
