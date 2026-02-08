@@ -1,6 +1,6 @@
 # 📌 Photo search with Pixabay API 
 
-### This repository contains a small interactive web application built with modern tools.
+This repository contains a small interactive web application built with modern tools.
 
 ## Project Overview
 
@@ -13,7 +13,7 @@ This project is a vanilla JavaScript web application that interacts with a publi
 
 ## Technologies Used
 
-### This project uses the following core technologies:
+This project uses the following core technologies:
 - HTML5 — Markup for the site structure
 - CSS3 — Styling and layout
 - JavaScript (ES6+) — Application logic and interaction
